@@ -5,11 +5,13 @@ export type AddProduct = (product: Product) => void
 
 export type ChangeProduct = (product: CartProduct) => void
 
+export type DeleteProduct = (product?: CartProduct) => void
+
 export interface CartContextProps {
   addProduct: AddProduct
   incrementProduct: ChangeProduct
   decrementProduct: ChangeProduct
-  deleteProduct: ChangeProduct
+  deleteProduct: DeleteProduct
   cartProducts: CartProduct[]
   loading: boolean
 }

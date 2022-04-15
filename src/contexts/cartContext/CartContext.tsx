@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { AddProduct, CartContextProps, ChangeProduct } from './types'
+import { AddProduct, CartContextProps, ChangeProduct, DeleteProduct } from './types'
 import { db } from '../../firebase-config'
 import { ref, onValue, set, update, remove } from 'firebase/database'
 import { useAuth } from '../authContext/AuthContext'
@@ -18,7 +18,7 @@ export const CartProvider: React.FC = ({ children }) => {
 
   const cartRef = (id = '') => ref(db, `cart/${user.uid}/${id}`)
 
-  const addProduct: AddProduct = (product: Product) => {
+  const addProduct: AddProduct = (product) => {
     const overlap = cartProducts.find((item: CartProduct) => item.id === product.id)
     if (overlap) {
       incrementProduct(overlap)
@@ -32,7 +32,7 @@ export const CartProvider: React.FC = ({ children }) => {
     }
   }
 
-  const incrementProduct: ChangeProduct = (product: CartProduct) => {
+  const incrementProduct: ChangeProduct = (product) => {
     update(cartRef(product.id), {
       quantity: product.quantity + 1,
     }).catch(error => {
@@ -40,7 +40,7 @@ export const CartProvider: React.FC = ({ children }) => {
     })
   }
 
-  const decrementProduct: ChangeProduct = (product: CartProduct) => {
+  const decrementProduct: ChangeProduct = (product) => {
     if (product.quantity - 1 === 0) {
       return deleteProduct(product)
     }
@@ -51,8 +51,8 @@ export const CartProvider: React.FC = ({ children }) => {
     })
   }
 
-  const deleteProduct: ChangeProduct = (product: CartProduct) => {
-    remove(cartRef(product.id)).catch(error => {
+  const deleteProduct: DeleteProduct = (product) => {
+    remove(cartRef(product?.id)).catch(error => {
       console.log(error)
     })
   }

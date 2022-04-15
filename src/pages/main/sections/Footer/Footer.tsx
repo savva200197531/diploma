@@ -15,15 +15,15 @@ const Footer: React.FC = () => {
             <div className="footer-info">
               <FontAwesomeIcon icon={faHouse as any} size="lg" />
               <div>
-                <p>Орджоникидзе, д.11, строение 40,</p>
-                <p>Москва, 115419</p>
+                <p>пл. им. В. Н. Баварина, д. 2, офис 11/01</p>
+                <p>Барнаул, 656056</p>
               </div>
             </div>
             <div className="footer-info">
               <FontAwesomeIcon icon={faSquarePhone as any} size="lg" />
               <div>
-                <p>Телефон: +7 (495) 234-9777</p>
-                <p>факс: +7 (495) 234-9777</p>
+                <p>Телефон: +7 (923) 561-2109</p>
+                <p>факс: +7 (923) 561-2109</p>
               </div>
             </div>
           </div>
