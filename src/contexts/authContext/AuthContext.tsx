@@ -31,7 +31,6 @@ export const AuthProvider: React.FC = ({ children }) => {
         email,
         admin: !!snapshot.val().admin,
       })
-      localStorage.setItem('token', uid)
     }).finally(() => {
       setLoading(false)
     }).catch(error => {
@@ -67,7 +66,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     onAuthStateChanged(auth, (currentUser) => {
       setLoading(true)
       if (!currentUser) {
-        localStorage.removeItem('token')
+        setUser({} as User)
         setLoading(false)
         return
       }

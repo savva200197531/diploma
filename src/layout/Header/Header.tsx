@@ -37,13 +37,13 @@ const Header: React.FC = () => {
   // и не даю перейти на страницу аунтефикации, если он уже вошел на сайт
   useEffect(() => {
     if (loading) return
-    if (!localStorage.getItem('token') && (pageType !== 'signup' && pageType !== 'login')) {
+    if (!user.uid && (pageType !== 'signup' && pageType !== 'login')) {
       navigate('/auth/login')
     }
-    if (localStorage.getItem('token') && (pageType === 'signup' || pageType === 'login')) {
+    if (user.uid && (pageType === 'signup' || pageType === 'login')) {
       navigate('/')
     }
-  }, [pageType, loading])
+  }, [pageType, loading, user])
 
   useEffect(() => {
     if (loading) return
