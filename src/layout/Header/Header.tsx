@@ -55,7 +55,7 @@ const Header: React.FC = () => {
 
   // верстка
   return (
-    <footer className="header">
+    <header className="header">
       <div className="container">
         <div className="header-content">
           {pageType === 'login' && <Button className="auth-button" variant="outlined" color="inherit" onClick={() => navigate('/auth/signup')}>
@@ -71,13 +71,22 @@ const Header: React.FC = () => {
               <Button color="inherit" onClick={() => navigate('/')}>
                 <img src={logo} alt="logo" className="logo"/>
               </Button>
+              <Button variant="outlined" color="inherit" onClick={() => navigate('/certificates')}>
+                Сертификаты
+              </Button>
+              <Button variant="outlined" color="inherit" onClick={() => navigate('/contacts')}>
+                Контакты
+              </Button>
+              <Button variant="outlined" color="inherit" onClick={() => navigate('/about')}>
+                О нас
+              </Button>
               <UserButton />
               <CartButton />
             </>
           )}
         </div>
       </div>
-    </footer>
+    </header>
   )
 }
 

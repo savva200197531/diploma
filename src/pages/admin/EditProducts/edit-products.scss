@@ -1,5 +1,9 @@
 @import '../../../variables';
 
+.edit-products {
+  margin-bottom: 100px;
+}
+
 .edit-products-content {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(0, 300px));
@@ -30,7 +34,7 @@
 }
 
 .product-card {
-
+  padding: 10px;
 }
 
 .edit-products-form {}

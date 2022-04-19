@@ -12,6 +12,13 @@ import EditProducts from './pages/admin/EditProducts/EditProducts'
 import { ProductsProvider } from './contexts/productsContext/ProductsContext'
 import Cart from './pages/cart/Cart'
 import NotFound from './pages/NotFound/NotFound'
+import About from './pages/About/About'
+import Contacts from './pages/Contacts/Contacts'
+import Certificates from './pages/Сertificates/Сertificates'
+import Footer from './layout/Footer/Footer'
+import Products from './pages/main/sections/Products/Products'
+import Info from './pages/main/sections/Info/Info'
+import Reviews from './pages/main/sections/Reviews/Reviews'
 
 // корень приложения с роутером для навигации по сайту и провайдерами, для управления логикой сайта
 function App() {
@@ -20,17 +27,32 @@ function App() {
       <AuthProvider>
         <ProductsProvider>
           <CartProvider>
-            <Header />
-
+            <Header/>
             <Routes>
-              <Route path="/" element={<MainPage />} />
-              <Route path="auth" element={<Auth />} >
-                <Route path="login" element={<Login/>} />
-                <Route path="signup" element={<Signup/>} />
+              <Route path="auth" element={<Auth/>}>
+                <Route path="login" element={<Login/>}/>
+                <Route path="signup" element={<Signup/>}/>
               </Route>
-              <Route path="/admin/products" element={<EditProducts />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="*" element={<NotFound />} />
+
+              <Route path="/" element={<MainPage/>}>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <Products/>
+                      <Info/>
+                      <Reviews/>
+                    </>
+                  }
+                />
+                <Route path="/certificates" element={<Certificates/>}/>
+                <Route path="/contacts" element={<Contacts/>}/>
+                <Route path="/about" element={<About/>}/>
+                <Route path="/admin/products" element={<EditProducts/>}/>
+                <Route path="/cart" element={<Cart/>}/>
+              </Route>
+
+              <Route path="*" element={<NotFound/>}/>
             </Routes>
           </CartProvider>
         </ProductsProvider>

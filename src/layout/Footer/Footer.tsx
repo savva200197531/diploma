@@ -2,7 +2,7 @@ import React from 'react'
 import './Footer.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faSquarePhone } from '@fortawesome/free-solid-svg-icons'
-import sk from '../../../../assets/images/sk.png'
+import sk from '../../assets/images/sk.png'
 
 // подвал сайта
 const Footer: React.FC = () => {

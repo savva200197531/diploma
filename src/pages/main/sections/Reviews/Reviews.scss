@@ -2,6 +2,7 @@
 
 .reviews-section {
   position: relative;
+  margin-bottom: 200px;
 
   &:before {
     content: '';
@@ -31,8 +32,6 @@
   .section-text {
     max-width: 435px;
   }
-
-  padding-bottom: 100px;
 
   //&:after {
   //  content: '';

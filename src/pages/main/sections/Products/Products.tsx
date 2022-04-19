@@ -14,7 +14,8 @@ const Products: React.FC = () => {
       <div className="container">
         <div className="products-content">
           <h2 className="products-title section-title">Наши товары</h2>
-          {loading ? <Loader type="spinner" size={50} /> : <Slider className="products-slider" Slide={Slide} slides={products} />}
+          {loading ? <Loader type="spinner" size={50}/> : !products.length ? <div>Список товаров пуст</div> :
+            <Slider className="products-slider" Slide={Slide} slides={products}/>}
         </div>
       </div>
     </section>
