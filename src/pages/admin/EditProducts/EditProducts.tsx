@@ -15,7 +15,7 @@ const EditProducts: React.FC = () => {
       <div className="container">
         <div className="edit-products-content">
           <EditProductModal />
-          {loading ? <Loader type="spinner" size={50} /> : products.map(product => (
+          {loading ? <Loader type="spinner" size={50} /> : products.map((product, index: number) => (
             <div className="product-card" key={product.id}>
               <div className="img-wrapper">
                 <div>

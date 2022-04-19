@@ -6,22 +6,25 @@ import useValidatePassword from '../../../hooks/useValidatePassword'
 import Loader from 'react-ts-loaders'
 import useLogin from '../../../hooks/useLogin'
 import { FormField } from '../../../types/form'
+import FormFields from '../../../components/FormFields'
 
 const Login: React.FC = () => {
   // состояние компонента
-  const [login, setLogin] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+  const [login, setLogin] = useState<string>('nama14607@gmail.com')
+  const [password, setPassword] = useState<string>('123123')
   const [isLoading, setIsLoading] = useState(false)
   const [fields, setFields] = useState<FormField[]>([
     {
       id: 'login',
       name: 'Email',
+      defaultValue: login,
       setState: setLogin,
       errors: [],
     },
     {
       id: 'password',
       name: 'Пароль',
+      defaultValue: password,
       setState: setPassword,
       errors: [],
     },
@@ -82,27 +85,7 @@ const Login: React.FC = () => {
   // верстка
   return <>
     <form className="auth-form login-form" onSubmit={handleSubmit}>
-      {fields.map((field: FormField) => (
-        <FormControl key={field.id}>
-          <InputLabel color="primary" htmlFor={field.id}>
-            {field.name}
-          </InputLabel>
-          <Input
-            color="primary"
-            id={field.id}
-            aria-describedby={field.id}
-            onChange={(event) => field.setState(event.target.value)}
-          />
-          <FormHelperText
-            id={field.id}
-            error
-          >
-            {field.errors.map((error: string, index: number) =>
-              <React.Fragment key={index}>{index !== 0 && ' '}{error}</React.Fragment>,
-            )}
-          </FormHelperText>
-        </FormControl>
-      ))}
+      <FormFields fields={fields} />
 
       <Button variant="contained" color="primary" type="submit" disabled={isLoading}>
         {isLoading ? <Loader className="auth-spinner" type="spinner" size={20} /> : 'Войти'}

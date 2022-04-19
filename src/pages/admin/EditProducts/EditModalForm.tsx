@@ -4,12 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCamera } from '@fortawesome/free-solid-svg-icons'
 import Loader from 'react-ts-loaders'
 import { FormField } from '../../../types/form'
-import { NumberFormatCustom } from './NumberFormatCustom'
 import { ProductFields } from '../../../types/products'
 import useCreateProduct from '../../../hooks/useCreateProduct'
 import useValidateStringMinMax from '../../../hooks/useValidateStringMinMax'
 import useValidateNumberMinMax from '../../../hooks/useValidateNumberMinMax'
 import useValidateRequired from '../../../hooks/useValidateRequired'
+import FormFields from '../../../components/FormFields'
+import { NumberFormatCustom } from '../../../components/NumberFormatCustom'
 
 type Props = {
   open: boolean
@@ -40,12 +41,14 @@ const EditModalForm: React.FC<Props> = ({ open, handleClose }) => {
     {
       id: 'name',
       name: 'Название',
+      defaultValue: name,
       setState: setName,
       errors: [],
     },
     {
       id: 'description',
       name: 'Описание',
+      defaultValue: description,
       setState: setDescription,
       inputComponent: TextareaAutosize,
       errors: [],
@@ -53,6 +56,7 @@ const EditModalForm: React.FC<Props> = ({ open, handleClose }) => {
     {
       id: 'cost',
       name: 'Цена',
+      defaultValue: cost,
       setState: setCost,
       inputComponent: NumberFormatCustom as any,
       errors: [],
@@ -135,30 +139,8 @@ const EditModalForm: React.FC<Props> = ({ open, handleClose }) => {
   }, [loading])
 
   return (
-    <form ref={formRef} className="edit-products-form" onSubmit={handleSubmit}>
-      {fields.map(field => (
-        <FormControl key={field.id}>
-          <InputLabel color="primary" htmlFor={field.id}>
-            {field.name}
-          </InputLabel>
-          <Input
-            color="primary"
-            id={field.id}
-            defaultValue={field.defaultValue}
-            aria-describedby={field.id}
-            onChange={(event) => field.setState(event.target.value)}
-            inputComponent={field.inputComponent || undefined}
-          />
-          <FormHelperText
-            id={field.id}
-            error
-          >
-            {field.errors.map((error: string, index: number) =>
-              <React.Fragment key={index}>{index !== 0 && ' '}{error}</React.Fragment>,
-            )}
-          </FormHelperText>
-        </FormControl>
-      ))}
+    <form ref={formRef} className="modal-form edit-products-form" onSubmit={handleSubmit}>
+      <FormFields fields={fields} />
       <input
         accept="image/*"
         id="icon-button-photo"

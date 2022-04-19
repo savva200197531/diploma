@@ -7,6 +7,7 @@ import useValidateEmail from '../../../hooks/useValidateEmail'
 import useValidatePassword from '../../../hooks/useValidatePassword'
 import Loader from 'react-ts-loaders'
 import useValidatePasswordConfirm from '../../../hooks/useValidatePasswordConfirm'
+import FormFields from '../../../components/FormFields'
 
 const Signup: React.FC = () => {
   // состояние компонента
@@ -18,18 +19,21 @@ const Signup: React.FC = () => {
     {
       id: 'login',
       name: 'Email',
+      defaultValue: login,
       setState: setLogin,
       errors: [],
     },
     {
       id: 'password',
       name: 'Пароль',
+      defaultValue: password,
       setState: setPassword,
       errors: [],
     },
     {
       id: 'password-confirm',
       name: 'Подтверждение пароля',
+      defaultValue: passwordConfirm,
       setState: setPasswordConfirm,
       errors: [],
     },
@@ -97,27 +101,7 @@ const Signup: React.FC = () => {
   // верстка
   return <>
     <form className="auth-form signup-form" onSubmit={handleSubmit}>
-      {fields.map((field: FormField) => (
-        <FormControl key={field.id}>
-          <InputLabel color="primary" htmlFor={field.id}>
-            {field.name}
-          </InputLabel>
-          <Input
-            color="primary"
-            id={field.id}
-            aria-describedby={field.id}
-            onChange={(event) => field.setState(event.target.value)}
-          />
-          <FormHelperText
-            id={field.id}
-            color="primary"
-          >
-            {field.errors.map((error: string, index: number) =>
-              <React.Fragment key={index}>{index !== 0 && ' '}{error}</React.Fragment>,
-            )}
-          </FormHelperText>
-        </FormControl>
-      ))}
+      <FormFields fields={fields} />
 
       <Button variant="contained" color="primary" type="submit" disabled={isLoading}>
         {isLoading ? <Loader className="auth-spinner" type="spinner" size={20} /> : 'Зарегистрироваться'}

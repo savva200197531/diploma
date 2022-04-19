@@ -46,7 +46,7 @@ export const ProductsProvider: React.FC = ({ children }) => {
       setProducts(Object.keys(value).map(key => ({
         ...value[key],
         id: key,
-      })))
+      })).reverse())
       setLoading(false)
     })
   }

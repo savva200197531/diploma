@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(0, 300px));
   justify-content: space-between;
+  grid-auto-flow: row;
   grid-gap: 30px;
 }
 
@@ -17,6 +18,7 @@
 }
 
 .product-card-edit {
+  //grid-row: 1;
   justify-content: center;
   cursor: pointer;
   transition: 0.3s ease;
@@ -31,22 +33,7 @@
 
 }
 
-.edit-products-form {
-  max-width: 400px;
-  background: white;
-  margin: 0 auto;
-  opacity: 0;
-  transition: 0.5s ease;
-  display: flex;
-  flex-direction: column;
-  border-radius: 4px;
-  padding: 20px 20px 0 20px;
-  outline: none;
-
-  > *:not(:first-child) {
-    margin-top: 20px;
-  }
-}
+.edit-products-form {}
 
 .edit-products-img-label {}
 

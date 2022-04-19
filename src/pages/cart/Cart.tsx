@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useCart } from '../../contexts/cartContext/CartContext'
 import Loader from 'react-ts-loaders'
 import { Button } from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import './cart.scss'
-import CartToolbar from './CartToolbar'
+import CartSubmit from './CartSubmit'
 
 const Cart: React.FC = () => {
   const { loading, cartProducts, incrementProduct, decrementProduct, deleteProduct } = useCart()
@@ -41,7 +41,7 @@ const Cart: React.FC = () => {
                 ))}
           </div>
 
-          {!!cartProducts.length && <CartToolbar />}
+          {!!cartProducts.length && <CartSubmit />}
         </div>
       </div>
     </section>
