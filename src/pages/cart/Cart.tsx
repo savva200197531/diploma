@@ -34,9 +34,9 @@ const Cart: React.FC = () => {
                         +
                       </Button>
                     </div>
-                    <IconButton color="error" onClick={() => deleteProduct(product)}>
-                      <FontAwesomeIcon icon={faTrashCan as any} />
-                    </IconButton>
+                    <Button color="error" onClick={() => deleteProduct(product)}>
+                      <FontAwesomeIcon icon={faTrashCan as any} size="lg" />
+                    </Button>
                   </div>
                 ))}
           </div>

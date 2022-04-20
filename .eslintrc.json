@@ -38,6 +38,7 @@
     "@typescript-eslint/no-empty-interface": "off",
     "arrow-parens": "off",
     "spaced-comment": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "linebreak-style": 0
   }
 }
