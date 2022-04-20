@@ -5,7 +5,8 @@
   width: 100%;
   max-width: 80vw;
   position: relative;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   height: 400px;
 }
 
@@ -50,7 +51,6 @@
   display: flex;
   justify-content: flex-end;
   position: relative;
-  top: -30px;
 
   img {
     cursor: pointer;
@@ -73,54 +73,5 @@
 
   &.active {
     background: $primary-color;
-  }
-}
-
-//  videos slider
-
-.videos-slider {
-  max-height: 338px;
-
-  .slides-container {
-
-    .slide {
-      height: auto;
-      opacity: 0;
-
-      &.active {
-        opacity: 1;
-      }
-    }
-  }
-
-  @media screen and (max-width: 500px) {
-    max-height: 250px;
-  }
-
-  @media screen and (max-width: 400px) {
-    max-height: 210px;
-  }
-}
-
-
-// adaptive
-
-@media screen and (max-width: 875px) {
-
-  // groups slider
-
-  .groups-slider {
-    margin: 40px 0 0 0;
-
-    .slider-controls {
-      top: -50px;
-    }
-  }
-}
-
-@media screen and (max-width: 460px) {
-
-  .groups-slider {
-    margin: 65px 0 0 0;
   }
 }

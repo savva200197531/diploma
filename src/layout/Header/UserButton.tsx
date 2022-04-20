@@ -1,8 +1,10 @@
 import React from 'react'
-import { Button, Popover } from '@mui/material'
+import { Button, IconButton, Popover } from '@mui/material'
 import Loader from 'react-ts-loaders'
 import { useAuth } from '../../contexts/authContext/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const UserButton = () => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
@@ -40,9 +42,9 @@ const UserButton = () => {
     loading ?
         <Loader type="spinner" size={50} /> :
         <>
-          <Button variant="outlined" color="inherit" onClick={handleClick}>
-            {user.email}
-          </Button>
+          <IconButton color="inherit" onClick={handleClick}>
+            <FontAwesomeIcon icon={faUser as any} />
+          </IconButton>
           <Popover
             open={!!anchorEl}
             anchorEl={anchorEl}
@@ -50,16 +52,16 @@ const UserButton = () => {
             className="popover"
             anchorOrigin={{
               vertical: 'bottom',
-              horizontal: 'center',
+              horizontal: 'right',
             }}
             transformOrigin={{
               vertical: 'top',
-              horizontal: 'center',
+              horizontal: 'right',
             }}
           >
             <div className="popover-content">
               {buttons.map(({ text, onClick, isHidden = false }, index: number) => (
-                !isHidden && <Button key={index} variant="outlined" color="primary" onClick={onClick}>
+                !isHidden && <Button key={index} variant="text" onClick={onClick}>
                   {text}
                 </Button>
               ))}

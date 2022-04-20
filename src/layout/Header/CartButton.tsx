@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
-import { Badge, Button } from '@mui/material'
+import { Badge, IconButton } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../../contexts/cartContext/CartContext'
 
@@ -12,11 +12,11 @@ const CartButton: React.FC = ({}) => {
 
   return (
     <div>
-      <Button color="inherit" onClick={() => navigate('/cart')}>
+      <IconButton color="inherit" onClick={() => navigate('/cart')}>
         <Badge badgeContent={cartProducts.length} color="primary">
-          <FontAwesomeIcon icon={faCartShopping as any} size="2x" />
+          <FontAwesomeIcon icon={faCartShopping as any} />
         </Badge>
-      </Button>
+      </IconButton>
     </div>
   )
 }

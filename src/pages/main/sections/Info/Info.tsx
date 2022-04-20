@@ -1,6 +1,7 @@
 import React from 'react'
 import './info.scss'
 import classNames from 'classnames'
+import { useNavigate } from 'react-router-dom'
 
 type Card = {
   className?: string;
@@ -11,15 +12,19 @@ type Card = {
 
 // информация о сайте
 const Info: React.FC = () => {
+  const navigate = useNavigate()
+
   const cards: Card[] = [
     {
       title: 'А вы доверяете своей сети',
       text: 'Можете ли Вы с полной уверенностью сказать, что доверяете своей сети?',
+      onClick: () => navigate('/trust'),
     },
     {
       title: 'Обслуживание и поддержка',
       text: 'В этом разделе сайта вы найдете необходимую документацию и руководства.',
       className: 'cross',
+      onClick: () => navigate('/support'),
     },
     {
       title: 'Купить оборудование',
@@ -31,7 +36,7 @@ const Info: React.FC = () => {
     },
     {
       title: 'Взять на тест',
-      text: 'В разработке',
+      onClick: () => navigate('/test'),
     },
   ]
 

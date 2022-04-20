@@ -16,21 +16,16 @@
   }
 }
 
+.header-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .logo {
-  max-width: 240px;
+  max-height: 42px;
 }
 
 .popover {
   margin-top: 10px;
-}
-
-.popover-content {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  padding: 5px;
-
-  > *:not(:first-child) {
-    margin-top: 5px;
-  }
 }

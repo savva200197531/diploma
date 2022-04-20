@@ -19,6 +19,9 @@ import Footer from './layout/Footer/Footer'
 import Products from './pages/main/sections/Products/Products'
 import Info from './pages/main/sections/Info/Info'
 import Reviews from './pages/main/sections/Reviews/Reviews'
+import Trust from './pages/Trust/Trust'
+import Support from './pages/Support/Support'
+import Test from './pages/Test/Test'
 
 // корень приложения с роутером для навигации по сайту и провайдерами, для управления логикой сайта
 function App() {
@@ -48,6 +51,9 @@ function App() {
                 <Route path="/certificates" element={<Certificates/>}/>
                 <Route path="/contacts" element={<Contacts/>}/>
                 <Route path="/about" element={<About/>}/>
+                <Route path="/trust" element={<Trust/>}/>
+                <Route path="/support" element={<Support/>}/>
+                <Route path="/test" element={<Test/>}/>
                 <Route path="/admin/products" element={<EditProducts/>}/>
                 <Route path="/cart" element={<Cart/>}/>
               </Route>

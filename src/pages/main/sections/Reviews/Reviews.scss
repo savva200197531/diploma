@@ -21,7 +21,7 @@
   }
 }
 
-.reviews, .contacts {
+.reviews {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   grid-gap: 40px;
@@ -32,21 +32,6 @@
   .section-text {
     max-width: 435px;
   }
-
-  //&:after {
-  //  content: '';
-  //  position: absolute;
-  //  width: 312px;
-  //  height: 253px;
-  //  background: url('../../../../' + $imagesPath + 'dots.svg');
-  //  right: -119px;
-  //  bottom: -65px;
-  //  z-index: -1;
-  //
-  //  @media screen and (max-width: 560px) {
-  //    display: none;
-  //  }
-  //}
 }
 
 .reviews-title {
@@ -99,4 +84,54 @@
 
 .account-socials, .contacts-data__bottom {
   justify-content: space-between;
+}
+
+.videos-slider {
+  max-height: 338px;
+
+  .slider-controls {
+    top: -20px;
+  }
+
+  .slides-container {
+
+    .slide {
+      height: auto;
+      opacity: 0;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    max-height: 250px;
+  }
+
+  @media screen and (max-width: 400px) {
+    max-height: 210px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .reviews-section {
+    margin-bottom: 100px;
+  }
+
+  .reviews {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .reviews-title {
+    margin-top: 18px;
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+
+  .reviews {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
 }

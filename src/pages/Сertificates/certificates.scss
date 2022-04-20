@@ -32,3 +32,15 @@
     height: 100%;
   }
 }
+
+@media screen and (max-width: 780px) {
+  .certificate {
+    flex-direction: column;
+
+    p {
+      margin-left: 0;
+      margin-top: 20px;
+    }
+  }
+}
+

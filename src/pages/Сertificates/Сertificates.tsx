@@ -3,7 +3,7 @@ import cert1 from '../../assets/images/cert_1.png'
 import cert2 from '../../assets/images/cert_2.png'
 import cert3 from '../../assets/images/cert_3.jpg'
 import './certificates.scss'
-import { Modal } from '@mui/material'
+import { Modal, useMediaQuery } from '@mui/material'
 
 const data = [
   {
@@ -27,6 +27,8 @@ const Certificates: React.FC = ({}) => {
   const [open, setOpen] = useState<boolean>(false)
   const [selectedImg, setSelectedImg] = useState<string | undefined>()
 
+  const isTablet = useMediaQuery('(max-width:780px)')
+
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
 
@@ -38,8 +40,10 @@ const Certificates: React.FC = ({}) => {
           {data.map((item, index) => (
             <div key={index} className="certificate">
               <img onClick={() => {
-                setSelectedImg(item.img)
-                handleOpen()
+                if (!isTablet) {
+                  setSelectedImg(item.img)
+                  handleOpen()
+                }
               }} src={item.img} alt=""/>
               <p>{item.text}</p>
             </div>

@@ -1,7 +1,6 @@
 @import '../../../../variables';
 
 .products-section {
-  //padding-top: 125px;
   overflow: hidden;
 }
 
@@ -13,9 +12,14 @@
   margin-top: 30px;
 }
 
-//slider
-
+//slide
 .products-slider {
+  margin-top: 55px;
+
+  .slider-controls {
+    top: -50px;
+  }
+
   .slides-container {
     width: 100%;
     display: flex;
@@ -47,8 +51,6 @@
         transform: translateX(250%);
       }
 
-      // slide content
-
       .slide-title {
         font-weight: 700;
         font-size: 14px;
@@ -71,3 +73,38 @@
     padding: 0 5px;
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .products-section {
+    padding-top: 100px;
+  }
+}
+
+@media screen and (max-width: 875px) {
+  .products-section {
+    padding-top: 70px;
+  }
+
+  .products-content {
+    flex-wrap: wrap;
+  }
+
+  .groups-slider {
+    margin: 40px 0 0 0;
+
+    .slider-controls {
+      top: -50px;
+    }
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .products-section {
+    padding-top: 20px;
+  }
+
+  .groups-slider {
+    margin: 65px 0 0 0;
+  }
+}
+

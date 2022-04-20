@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './Header.scss'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Button } from '@mui/material'
+import { Button, IconButton, Popover, useMediaQuery } from '@mui/material'
 import { useAuth } from '../../contexts/authContext/AuthContext'
 import logo from '../../assets/images/logo.png'
+import logoCut from '../../assets/images/logo-cut.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 import CartButton from './CartButton'
 import UserButton from './UserButton'
 
@@ -11,12 +14,16 @@ type PageType = 'signup' | 'login' | 'other'
 
 // шапка сайта
 const Header: React.FC = () => {
+  const [pageType, setPageType] = useState<PageType>()
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
+
+  const isTablet = useMediaQuery('(max-width:780px)')
+  const isMobile = useMediaQuery('(max-width:430px)')
+
   const { pathname } = useLocation()
   const navigate = useNavigate()
 
   const { loading, user } = useAuth()
-
-  const [pageType, setPageType] = useState<PageType>()
 
   // проверяю тип страницы
   const checkPageType = () => {
@@ -52,6 +59,34 @@ const Header: React.FC = () => {
     }
   }, [loading, pathname])
 
+  const buttons = (color: 'inherit' | 'primary', variant: 'outlined' | 'text') => {
+    const buttonsData = [
+      {
+        text: 'Сертификаты',
+        to: '/certificates',
+      },
+      {
+        text: 'Контакты',
+        to: '/contacts',
+      },
+      {
+        text: 'О нас',
+        to: '/about',
+      },
+    ]
+
+    return buttonsData.map((button, index) => (
+      <Button key={index} variant={variant} color={color} onClick={() => navigate(button.to)}>{button.text}</Button>
+    ))
+  }
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
 
   // верстка
   return (
@@ -68,20 +103,41 @@ const Header: React.FC = () => {
 
           {pageType === 'other' && (
             <>
-              <Button color="inherit" onClick={() => navigate('/')}>
-                <img src={logo} alt="logo" className="logo"/>
-              </Button>
-              <Button variant="outlined" color="inherit" onClick={() => navigate('/certificates')}>
-                Сертификаты
-              </Button>
-              <Button variant="outlined" color="inherit" onClick={() => navigate('/contacts')}>
-                Контакты
-              </Button>
-              <Button variant="outlined" color="inherit" onClick={() => navigate('/about')}>
-                О нас
-              </Button>
-              <UserButton />
-              <CartButton />
+              <IconButton color="inherit" onClick={() => navigate('/')}>
+                <img src={isMobile ? logoCut : logo} alt="logo" className="logo"/>
+              </IconButton>
+              {isTablet ?
+                <div className="header-mobile">
+                  <UserButton />
+                  <CartButton />
+                  <IconButton color="inherit" onClick={handleClick}>
+                    <FontAwesomeIcon icon={faBars as any} />
+                  </IconButton>
+                  <Popover
+                    open={!!anchorEl}
+                    anchorEl={anchorEl}
+                    onClose={handleClose}
+                    className="popover"
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'right',
+                    }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                  >
+                    <div className="popover-content">
+                      {buttons('primary', 'text')}
+                    </div>
+                  </Popover>
+                </div> : (
+                  <>
+                    {buttons('inherit', 'outlined')}
+                    <UserButton />
+                    <CartButton />
+                  </>
+                )}
             </>
           )}
         </div>

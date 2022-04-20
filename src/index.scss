@@ -57,10 +57,6 @@ section {
   line-height: 32px;
 }
 
-.card-title {
-  font-size: 35px;
-}
-
 .card-title-separator {
   font-family: 'Geometria', sans-serif;
   font-weight: 300;
@@ -68,10 +64,6 @@ section {
 
 .card-title-suffix {
   font-size: 22px;
-  letter-spacing: 0.05em;
-}
-
-.card-title, .card-title-suffix {
   letter-spacing: 0.05em;
 }
 
@@ -117,19 +109,21 @@ button {
   padding: 20px 20px 20px 20px;
   outline: none;
   transition: 0.5s ease;
-  //opacity: 0;
+  opacity: 0;
 
   > *:not(:first-child) {
     margin-top: 20px;
   }
 }
 
-// adaptive
+.popover-content {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 5px 0;
 
-@media screen and (max-width: 1390px) {
-
-  .card-title {
-    font-size: 50px;
+  > *:not(:first-child) {
+    margin-top: 5px;
   }
 }
 
@@ -145,7 +139,6 @@ button {
   }
 
   section {
-
     &:not(:first-child) {
       padding-top: 150px;
     }
@@ -165,52 +158,20 @@ button {
   }
 }
 
-@media screen and (max-width: 560px) {
-
-  .card-title {
-    font-size: 40px;
-  }
-}
-
 @media screen and (max-width: 460px) {
-
-  .groups-section {
-    padding-top: 20px;
-  }
-
   section {
-
     &:not(:first-child) {
       padding-top: 60px;
     }
   }
 
-  button {
-    font-size: 13px;
-    height: 44px;
-  }
-
   .section-title {
-    font-size: 36px;
+    font-size: 30px;
+    line-height: 30px;
   }
 
   .section-text {
     font-size: 16px;
     line-height: 28px;
   }
-
-  // checkbox
-
-  .checkbox-label {
-    font-size: 12px;
-    padding-left: 0;
-    padding-bottom: 8px;
-  }
-
-  .checkbox {
-    flex-wrap: wrap;
-    flex-direction: column-reverse;
-    text-align: center;
-  }
-
 }

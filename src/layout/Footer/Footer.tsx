@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
               </div>
             </div>
           </div>
-          <img src={sk} alt="skolkovo"/>
+          <img className="footer-img" src={sk} alt="skolkovo"/>
         </div>
       </div>
     </footer>
