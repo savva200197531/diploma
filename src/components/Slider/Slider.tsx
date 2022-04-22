@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './Slider.scss'
-import axios from 'axios'
 import classNames from 'classnames'
 import arrowLeft from '../../assets/images/arrow-left.svg'
 import arrowRight from '../../assets/images/arrow-right.svg'
-import Loader from 'react-ts-loaders'
 
 export interface SlideProps {
   slide: any;
@@ -22,24 +20,7 @@ type Props = {
 };
 
 const Slider: React.FC<Props> = ({ slides, navigation, className, Slide }) => {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [counter, setCounter] = useState<number>(0)
-
-  // const getSlides = () => {
-  //   setIsLoading(true)
-  //   axios
-  //       .get(url)
-  //       .then((res) => {
-  //         if (!res) return
-  //         setSlides(res.data)
-  //       })
-  //       .finally(() => {
-  //         setIsLoading(false)
-  //       })
-  //       .catch((error) => {
-  //         console.log(error)
-  //       })
-  // }
 
   const nextSlide = () => {
     setCounter(counter + 1)
@@ -60,14 +41,6 @@ const Slider: React.FC<Props> = ({ slides, navigation, className, Slide }) => {
 
   const isNext = (index: number) =>
     counter === slides.length - 1 ? index === 0 : index === counter + 1
-
-  // useEffect(() => {
-  //   getSlides()
-  // }, [])
-
-  if (isLoading) {
-    return <Loader type="spinner" size={50} />
-  }
 
   return (
     <div className={classNames('slider', className)}>

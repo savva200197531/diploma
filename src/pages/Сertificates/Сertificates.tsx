@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import cert1 from '../../assets/images/cert_1.png'
 import cert2 from '../../assets/images/cert_2.png'
 import cert3 from '../../assets/images/cert_3.jpg'

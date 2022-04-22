@@ -1,9 +1,7 @@
 import React, { FormEvent, useEffect, useRef, useState } from 'react'
 import {
   Button,
-  Dialog,
-  DialogActions,
-  DialogTitle, Modal, TextField,
+  Modal,
 } from '@mui/material'
 import { useCart } from '../../contexts/cartContext/CartContext'
 import { FormField } from '../../types/form'

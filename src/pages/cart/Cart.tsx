@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { useCart } from '../../contexts/cartContext/CartContext'
 import Loader from 'react-ts-loaders'
 import { Button, IconButton } from '@mui/material'

@@ -4,7 +4,6 @@ import { db } from '../../firebase-config'
 import { ref, onValue, set, update, remove } from 'firebase/database'
 import { useAuth } from '../authContext/AuthContext'
 import { CartProduct } from '../../types/cart'
-import { Product } from '../../types/products'
 
 const CartContext = React.createContext<CartContextProps>({} as CartContextProps)
 

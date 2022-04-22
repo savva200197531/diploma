@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthAction, AuthContextProps, User } from './types'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth'
-import { ref, set, get, child } from 'firebase/database'
+import { ref, set, get } from 'firebase/database'
 import { auth, db } from '../../firebase-config'
 import { useNavigate } from 'react-router-dom'
 

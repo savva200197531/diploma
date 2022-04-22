@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './edit-products.scss'
 import EditProductModal from './EditProductModal'
 import { useProducts } from '../../../contexts/productsContext/ProductsContext'
