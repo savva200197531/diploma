@@ -16,32 +16,45 @@ const Cart: React.FC = () => {
         <div className="cart">
           <div className="cart-items">
             {loading ? <Loader type="spinner" size={50}/> :
-              !cartProducts.length ? <div>Корзина пуста</div> :
-                cartProducts.map(product => (
-                  <div className="cart-item" key={product.id}>
-                    <div className="img-wrapper">
+              !cartProducts.length ? <div className="tea-c">Корзина пуста</div> :
+                <>
+                  {cartProducts.map((product) => (
+                    <div className="cart-item" key={product.id}>
+                      <div className="img-wrapper">
+                        <div>
+                          <img src={product.url} alt={product.name}/>
+                        </div>
+                      </div>
+                      <p>{product.name}</p>
+                      <div className="cart-item-counter">
+                        <Button variant="text" color="primary" onClick={() => decrementProduct(product)}>
+                          -
+                        </Button>
+                        <span>{product.quantity}</span>
+                        <Button variant="text" color="primary" onClick={() => incrementProduct(product)}>
+                          +
+                        </Button>
+                      </div>
                       <div>
-                        <img src={product.url} alt={product.name}/>
+                        {Number(product.cost) * product.quantity}₽
+                      </div>
+                      <div>
+                        <IconButton color="error" onClick={() => deleteProduct(product)}>
+                          <FontAwesomeIcon icon={faTrashCan as any} size="sm"/>
+                        </IconButton>
                       </div>
                     </div>
-                    <p>{product.name}</p>
-                    <div className="cart-item-counter">
-                      <Button variant="text" color="primary" onClick={() => decrementProduct(product)}>
-                        -
-                      </Button>
-                      <span>{product.quantity}</span>
-                      <Button variant="text" color="primary" onClick={() => incrementProduct(product)}>
-                        +
-                      </Button>
-                    </div>
-                    <Button color="error" onClick={() => deleteProduct(product)}>
-                      <FontAwesomeIcon icon={faTrashCan as any} size="lg" />
-                    </Button>
+                  ))}
+                  <div className="tea-c">Стоимость: {cartProducts.reduce((p, {
+                    cost,
+                    quantity,
+                  }) => p + Number(cost) * quantity, 0)}₽
                   </div>
-                ))}
+                </>
+            }
           </div>
 
-          {!!cartProducts.length && <CartSubmit />}
+          {!!cartProducts.length && <CartSubmit/>}
         </div>
       </div>
     </section>
