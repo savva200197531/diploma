@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import './Auth.scss'
+import './auth.scss'
 import logo from '../../assets/images/logo.png'
 
 type Props = {}

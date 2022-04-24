@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import './MainPage.scss'
+import './main-page.scss'
 import Footer from '../../layout/Footer/Footer'
 
 // главная страница

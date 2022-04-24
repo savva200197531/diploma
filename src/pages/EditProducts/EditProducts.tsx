@@ -1,11 +1,11 @@
 import React from 'react'
 import './edit-products.scss'
-import EditProductModal from './EditProductModal'
-import { useProducts } from '../../../contexts/productsContext/ProductsContext'
 import Loader from 'react-ts-loaders'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { Button } from '@mui/material'
+import { useProducts } from '../../contexts/productsContext/ProductsContext'
+import EditProductModal from './components/EditProductModal'
 
 const EditProducts: React.FC = () => {
   const { products, loading, deleteProduct } = useProducts()

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './Header.scss'
+import './header.scss'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Button, IconButton, Popover, useMediaQuery } from '@mui/material'
 import { useAuth } from '../../contexts/authContext/AuthContext'
@@ -7,8 +7,8 @@ import logo from '../../assets/images/logo.png'
 import logoCut from '../../assets/images/logo-cut.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
-import CartButton from './CartButton'
-import UserButton from './UserButton'
+import UserButton from './components/UserButton'
+import CartButton from './components/CartButton'
 
 type PageType = 'signup' | 'login' | 'other'
 

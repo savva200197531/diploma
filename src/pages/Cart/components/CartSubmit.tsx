@@ -3,10 +3,10 @@ import {
   Button,
   Modal,
 } from '@mui/material'
-import { useCart } from '../../contexts/cartContext/CartContext'
-import { FormField } from '../../types/form'
-import FormFields from '../../components/FormFields'
-import { PhoneMaskCustom } from '../../components/PhoneMaskCustom'
+import { useCart } from '../../../contexts/cartContext/CartContext'
+import { FormField } from '../../../types/form'
+import { PhoneMaskCustom } from '../../../components/PhoneMaskCustom'
+import FormFields from '../../../components/FormFields'
 
 const CartSubmit: React.FC = ({}) => {
   const [open, setOpen] = useState<boolean>(false)

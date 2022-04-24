@@ -1,10 +1,10 @@
 import React from 'react'
 import { Button, IconButton, Popover } from '@mui/material'
 import Loader from 'react-ts-loaders'
-import { useAuth } from '../../contexts/authContext/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useAuth } from '../../../contexts/authContext/AuthContext'
 
 const UserButton = () => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)

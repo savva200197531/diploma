@@ -1,5 +1,5 @@
 import React from 'react'
-import './Footer.scss'
+import './footer.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faSquarePhone } from '@fortawesome/free-solid-svg-icons'
 import sk from '../../assets/images/sk.png'

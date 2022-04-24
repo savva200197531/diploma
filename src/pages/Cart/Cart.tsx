@@ -5,7 +5,7 @@ import { Button, IconButton } from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import './cart.scss'
-import CartSubmit from './CartSubmit'
+import CartSubmit from './components/CartSubmit'
 
 const Cart: React.FC = () => {
   const { loading, cartProducts, incrementProduct, decrementProduct, deleteProduct } = useCart()
