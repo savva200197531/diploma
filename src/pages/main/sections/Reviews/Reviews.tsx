@@ -26,7 +26,6 @@ const Reviews: React.FC = () => {
     })
   }, [])
 
-
   return (
     <section className="reviews-section">
       <div className="container">

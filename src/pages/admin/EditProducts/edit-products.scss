@@ -1,7 +1,8 @@
 @import '../../../variables';
 
 .edit-products {
-  margin-bottom: 100px;
+  min-height: calc(100vh - 210px);
+  padding-bottom: 100px;
 }
 
 .edit-products-content {
@@ -37,7 +38,10 @@
   padding: 10px;
 }
 
-.edit-products-form {}
+.edit-products-form {
+  max-height: 700px;
+  overflow: auto;
+}
 
 .edit-products-img-label {}
 

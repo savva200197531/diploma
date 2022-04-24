@@ -9,19 +9,17 @@ type Props = {
 const FormFields: React.FC<Props> = ({ fields }) => {
   return (
     <>
-      {fields.map(({ id, name, errors, setState, defaultValue, inputComponent, value }) => (
+      {fields.map(({ id, name, errors, setState, ...props }) => (
         <FormControl key={id}>
           <InputLabel color="primary" htmlFor={id}>
             {name}
           </InputLabel>
           <Input
+            {...props}
             color="primary"
             id={id}
-            defaultValue={defaultValue}
-            value={value}
             aria-describedby={id}
             onChange={(event) => setState(event.target.value)}
-            inputComponent={inputComponent || undefined}
           />
           <FormHelperText
             id={id}

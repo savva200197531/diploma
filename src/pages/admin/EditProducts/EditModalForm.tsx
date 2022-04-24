@@ -31,7 +31,7 @@ const EditModalForm: React.FC<Props> = ({ open, handleClose }) => {
 
   const { createProductErrors, loading } = useCreateProduct(values, hasErrors, handleClose)
   const { lengthErrors: nameErrors } = useValidateStringMinMax(name, { min: 3 }, formSubmit)
-  const { lengthErrors: descriptionErrors } = useValidateStringMinMax(description, { min: 10, max: 100 }, formSubmit)
+  const { lengthErrors: descriptionErrors } = useValidateStringMinMax(description, { min: 10 }, formSubmit)
   const { numberErrors: costErrors } = useValidateNumberMinMax(Number(cost), { min: 10 }, formSubmit)
   const { requiredErrors: fileErrors } = useValidateRequired(imgFile.name, formSubmit)
 
@@ -51,6 +51,7 @@ const EditModalForm: React.FC<Props> = ({ open, handleClose }) => {
       defaultValue: description,
       setState: setDescription,
       inputComponent: TextareaAutosize,
+      maxRows: 4,
       errors: [],
     },
     {
