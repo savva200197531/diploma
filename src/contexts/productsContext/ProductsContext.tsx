@@ -57,7 +57,6 @@ export const ProductsProvider: React.FC = ({ children }) => {
     watchProducts()
   }, [])
 
-
   const value = {
     uploadProduct,
     loading,

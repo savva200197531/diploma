@@ -1,9 +1,9 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useCart } from '../../../contexts/cartContext/CartContext'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Badge, IconButton } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { useCart } from '../../../contexts/cartContext/CartContext'
 
 const CartButton: React.FC = ({}) => {
   const navigate = useNavigate()
