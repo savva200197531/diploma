@@ -72,19 +72,6 @@
   grid-gap: 10px;
 }
 
-.extended-button {
-  position: relative;
-  margin-left: auto;
-
-  button {
-    min-width: unset;
-  }
-
-  span {
-    padding: 0 5px;
-  }
-}
-
 @media screen and (max-width: 1000px) {
   .products-section {
     padding-top: 100px;

@@ -1,10 +1,9 @@
 import React from 'react'
 import { SlideProps } from '../../../../components/Slider/Slider'
 import { Button } from '@mui/material'
-import { useCart } from '../../../../contexts/cartContext/CartContext'
 import { Product } from '../../../../types/products'
-import ExtendedButton from './ExtendedButton'
 import { useNavigate } from 'react-router-dom'
+import CartAddButton from '../../../../components/CartAddButton/CartAddButton'
 
 interface Props extends SlideProps {
   slide: Product
@@ -12,11 +11,7 @@ interface Props extends SlideProps {
 
 // отдельный продукт (слайд)
 const Slide: React.FC<Props> = ({ slide, className, setCounter, index, counter }) => {
-  const { addProduct, cartProducts } = useCart()
-
   const navigate = useNavigate()
-
-  const overlap = cartProducts.find(item => item.id === slide.id)
 
   return (
     <div className={className} onClick={() => setCounter(index)}>
@@ -40,10 +35,7 @@ const Slide: React.FC<Props> = ({ slide, className, setCounter, index, counter }
           <Button onClick={() => navigate(`product/${slide.id}`)} variant="outlined" color="inherit">
             Подробнее
           </Button>
-          {overlap ? <ExtendedButton overlap={overlap}/> :
-            <Button onClick={() => addProduct(slide)} variant="outlined" color="inherit">
-              В корзину
-            </Button>}
+          <CartAddButton product={slide} />
         </div>
       )}
     </div>

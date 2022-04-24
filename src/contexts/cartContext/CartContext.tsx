@@ -18,7 +18,7 @@ export const CartProvider: React.FC = ({ children }) => {
   const cartRef = (id = '') => ref(db, `cart/${user.uid}/${id}`)
 
   const addProduct: AddProduct = (product) => {
-    const overlap = cartProducts.find((item: CartProduct) => item.id === product.id)
+    const overlap = cartProducts.find(item => item.id === product.id)
     if (overlap) {
       incrementProduct(overlap)
     } else {

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { DeleteProduct, ProductsContextProps, UploadProduct } from './types'
+import { DeleteProduct, GetProduct, ProductsContextProps, UploadProduct } from './types'
 import { ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { ref as databaseRef, set, push, onValue, remove } from 'firebase/database'
 import { db, storage } from '../../firebase-config'
@@ -51,6 +51,8 @@ export const ProductsProvider: React.FC = ({ children }) => {
     })
   }
 
+  const getProduct: GetProduct = (id) => products.find(product => product.id === id) as Product
+
   useEffect(() => {
     watchProducts()
   }, [])
@@ -61,6 +63,7 @@ export const ProductsProvider: React.FC = ({ children }) => {
     loading,
     products,
     deleteProduct,
+    getProduct,
   }
 
   return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>
