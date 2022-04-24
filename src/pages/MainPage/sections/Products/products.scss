@@ -20,6 +20,7 @@
 //slide
 .products-slider {
   margin-top: 55px;
+  height: 453px;
 
   .slider-controls {
     top: -50px;
@@ -33,7 +34,7 @@
     overflow: visible;
 
     .slide {
-      max-height: 323px;
+      max-height: 373px;
       max-width: 241px;
       transform: translateX(365%);
       padding: 7px 10px;
@@ -41,7 +42,7 @@
 
       &.active {
         transform: translateX(0);
-        max-height: 387px;
+        max-height: 437px;
         max-width: 293px;
         top: -32px;
         padding: 10px 12px;
@@ -63,7 +64,12 @@
       }
     }
   }
+}
 
+.slide-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
 }
 
 .extended-button {

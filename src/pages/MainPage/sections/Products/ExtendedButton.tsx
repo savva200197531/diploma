@@ -12,11 +12,11 @@ const ExtendedButton: React.FC<Props> = ({ overlap }) => {
 
   return (
     <div className="extended-button">
-      <Button variant="outlined" color="inherit" onClick={() => decrementProduct(overlap)}>
+      <Button color="inherit" onClick={() => decrementProduct(overlap)}>
         -
       </Button>
       <span>{overlap.quantity}</span>
-      <Button variant="outlined" color="inherit" onClick={() => incrementProduct(overlap)}>
+      <Button color="inherit" onClick={() => incrementProduct(overlap)}>
         +
       </Button>
     </div>
