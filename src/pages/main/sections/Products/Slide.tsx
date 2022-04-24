@@ -24,7 +24,7 @@ const Slide: React.FC<Props> = ({ slide, className, setCounter, index, counter }
       </div>
       <h5 className="slide-title">{slide.name}</h5>
       <p className=""><span>Стоимость:</span> {slide.cost} <span>₽</span></p>
-      <p className="slide-description"><span>Описание:</span> {slide.description}</p>
+      <p className="slide-description"><span>Описание:</span> {slide.description.split(' ').slice(0, 5).join(' ')}...</p>
       {index === counter && (
         overlap ? <ExtendedButton overlap={overlap} /> : <Button onClick={() => addProduct(slide)} variant="outlined" color="inherit">
           Добавить в корзину
