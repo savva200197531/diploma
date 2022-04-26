@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AddProduct, CartContextProps, ChangeProduct, DeleteProduct } from './types'
 import { db } from '../../firebase-config'
-import { ref, onValue, set, update, remove } from 'firebase/database'
+import { ref, onValue, set, update, remove, push } from 'firebase/database'
 import { useAuth } from '../authContext/AuthContext'
 import { CartProduct } from '../../types/cart'
 
@@ -56,6 +56,18 @@ export const CartProvider: React.FC = ({ children }) => {
     })
   }
 
+  const cartSubmit = (payload: any) => {
+    return set(push(ref(db, 'sales')), {
+      ...payload,
+      email: user.email,
+      products: cartProducts,
+    }).then(() => {
+      deleteProduct()
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
   useEffect(() => {
     if (userLoading) return
     setLoading(true)
@@ -78,6 +90,7 @@ export const CartProvider: React.FC = ({ children }) => {
     decrementProduct,
     deleteProduct,
     loading,
+    cartSubmit,
   }
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>

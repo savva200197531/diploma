@@ -45,7 +45,7 @@ const Certificates: React.FC = ({}) => {
                   handleOpen()
                 }
               }} src={item.img} alt=""/>
-              <p>{item.text}</p>
+              <p className="tea-j">{item.text}</p>
             </div>
           ))}
 

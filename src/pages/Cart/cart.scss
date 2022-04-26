@@ -31,6 +31,10 @@
 
 }
 
+.cart-submit-form {
+  max-width: 400px;
+}
+
 @media screen and (max-width: 725px) {
   .cart-item-counter {
     flex-direction: column;

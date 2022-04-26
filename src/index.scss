@@ -35,8 +35,10 @@ h1, h2, h3 {
 }
 
 section {
-  &:not(:first-child) {
-    padding-top: 200px;
+  padding-top: 200px;
+
+  &:first-of-type {
+    padding-top: 100px;
   }
 }
 
@@ -100,7 +102,6 @@ button {
 }
 
 .modal-form {
-  max-width: 400px;
   background: white;
   margin: 0 auto;
   display: flex;
@@ -129,6 +130,10 @@ button {
 
 .tea-c {
   text-align: center;
+}
+
+.tea-j {
+  text-align: justify;
 }
 
 @media screen and (max-width: 1150px) {

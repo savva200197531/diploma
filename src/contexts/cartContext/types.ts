@@ -7,6 +7,8 @@ export type ChangeProduct = (product: CartProduct) => void
 
 export type DeleteProduct = (product?: CartProduct) => void
 
+export type CartSubmit = (payload: any) => Promise<any>
+
 export interface CartContextProps {
   addProduct: AddProduct
   incrementProduct: ChangeProduct
@@ -14,4 +16,5 @@ export interface CartContextProps {
   deleteProduct: DeleteProduct
   cartProducts: CartProduct[]
   loading: boolean
+  cartSubmit: CartSubmit
 }

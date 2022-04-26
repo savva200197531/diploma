@@ -44,7 +44,7 @@ const Info: React.FC = () => {
     <section className="info-section">
       <div className="container">
         <div className="info">
-          <h2 className="section-title">Разрабатываем и производим сетевые решения с уникальным уровнем доверия</h2>
+          <h2 className="section-title tea-j">Разрабатываем и производим сетевые решения с уникальным уровнем доверия</h2>
           <div className="info-cards">
             {cards.map((card: Card, index: number) => (
               <div onClick={card.onClick} key={index} className={classNames('info-card', card.className)}>

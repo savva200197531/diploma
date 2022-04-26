@@ -22,15 +22,13 @@
 }
 
 .certificate-modal {
+  height: 100%;
   margin: 0 auto;
-  //padding: 100px 0;
-  max-width: 725px;
+  width: 742px;
+  overflow: auto;
   outline: none;
-  padding: 0;
 
-  img {
-    height: 100%;
-  }
+  img {}
 }
 
 @media screen and (max-width: 780px) {
