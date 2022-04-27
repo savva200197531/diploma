@@ -60,7 +60,7 @@ const UserButton = () => {
             }}
           >
             <div className="popover-content">
-              {buttons.map(({ text, onClick, isHidden = false }, index: number) => (
+              {buttons.map(({ text, onClick, isHidden = false }, index) => (
                 !isHidden && <Button key={index} variant="text" onClick={onClick}>
                   {text}
                 </Button>

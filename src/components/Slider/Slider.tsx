@@ -48,7 +48,7 @@ const Slider: React.FC<Props> = ({ slides, navigation, className, Slide }) => {
         <img onClick={prevSlide} src={arrowLeft} alt="prev slide" className="prev-slide" />
         <ul className="dots">
           {navigation &&
-            slides.map((slide, index: number) => (
+            slides.map((slide, index) => (
               <li
                 key={index}
                 className={classNames('dot', { active: index === counter })}
@@ -59,7 +59,7 @@ const Slider: React.FC<Props> = ({ slides, navigation, className, Slide }) => {
         <img onClick={nextSlide} src={arrowRight} alt="next slide" className="next-slide" />
       </div>
       <div className="slides-container">
-        {slides.map((slide, index: number) => (
+        {slides.map((slide, index) => (
           <Slide
             key={index}
             setCounter={setCounter}

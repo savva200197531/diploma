@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import EditModalForm from './EditModalForm'
+import EditProductsForm from './EditProductsForm'
 import { Modal } from '@mui/material'
 
 const EditProductModal: React.FC = ({}) => {
@@ -20,7 +20,7 @@ const EditProductModal: React.FC = ({}) => {
         onClose={handleClose}
       >
         <>
-          <EditModalForm open={open} handleClose={handleClose} />
+          <EditProductsForm open={open} handleClose={handleClose} />
         </>
       </Modal>
     </>

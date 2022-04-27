@@ -20,6 +20,8 @@ export const ProductsProvider: React.FC = ({ children }) => {
   const uploadProduct: UploadProduct = (value) => {
     const id = v4()
 
+    console.log(value)
+
     return uploadBytes(imagesRef(id), value.imgFile)
         .then(() => getDownloadURL(imagesRef(id)))
         .then(url => set(push(productsRef()), {

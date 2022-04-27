@@ -11,16 +11,19 @@ import useValidateNumberMinMax from '../../../hooks/useValidateNumberMinMax'
 import useValidateRequired from '../../../hooks/useValidateRequired'
 import FormFields from '../../../components/FormFields'
 import { NumberFormatCustom } from '../../../components/NumberFormatCustom'
+import ChildModalForm from './ChildModalForm'
+import { v4 } from 'uuid'
 
 type Props = {
   open: boolean
   handleClose: () => void
 }
 
-const EditModalForm: React.FC<Props> = ({ open, handleClose }) => {
-  const [name, setName] = useState<string>('')
-  const [description, setDescription] = useState<string>('')
-  const [cost, setCost] = useState<string>('')
+const EditProductsForm: React.FC<Props> = ({ open, handleClose }) => {
+  const [name, setName] = useState<string>('Name Name')
+  const [description, setDescription] = useState<string>('Description Description')
+  const [cost, setCost] = useState<string>('1000')
+  const [additionalDescription, setAdditionalDescription] = useState<{ [key: string]: string }>({})
   const [imgFile, setImgFile] = useState<File>({} as File)
   const [imgFileErrors, setImgFileErrors] = useState<string[]>([])
 
@@ -28,15 +31,8 @@ const EditModalForm: React.FC<Props> = ({ open, handleClose }) => {
   const [formSubmit, setFormSubmit] = useState<boolean>(false)
   const [hasErrors, setHasErrors] = useState<boolean>(true)
   const [isLoading, setIsLoading] = useState<boolean>(false)
-
-  const { createProductErrors, loading } = useCreateProduct(values, hasErrors, handleClose)
-  const { lengthErrors: nameErrors } = useValidateStringMinMax(name, { min: 3 }, formSubmit)
-  const { lengthErrors: descriptionErrors } = useValidateStringMinMax(description, { min: 10 }, formSubmit)
-  const { numberErrors: costErrors } = useValidateNumberMinMax(Number(cost), { min: 10 }, formSubmit)
-  const { requiredErrors: fileErrors } = useValidateRequired(imgFile.name, formSubmit)
-
+  const [openChildModal, setOpenChildModal] = useState<boolean>(false)
   const [img, setImg] = useState<string | null>()
-
   const [fields, setFields] = useState<FormField[]>([
     {
       id: 'name',
@@ -66,15 +62,46 @@ const EditModalForm: React.FC<Props> = ({ open, handleClose }) => {
 
   const formRef = useRef<HTMLFormElement>(null)
 
+  const { createProductErrors, loading } = useCreateProduct(values, hasErrors, handleClose)
+  const { lengthErrors: nameErrors } = useValidateStringMinMax(name, { min: 3 }, formSubmit)
+  const { lengthErrors: descriptionErrors } = useValidateStringMinMax(description, { min: 10 }, formSubmit)
+  const { numberErrors: costErrors } = useValidateNumberMinMax(Number(cost), { min: 10 }, formSubmit)
+  const { requiredErrors: fileErrors } = useValidateRequired(imgFile.name, formSubmit)
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
+
+    console.log(additionalDescription)
+
     setValues({
       name,
       description,
       cost,
       imgFile,
+      additionalDescription,
     })
     setFormSubmit(true)
+  }
+
+  const handleSubmitChildForm = (name: string) => {
+    const id = v4()
+
+    setFields([
+      ...fields,
+      {
+        id,
+        name,
+        setState: (value) => setAdditionalDescription({
+          ...additionalDescription,
+          [name]: value,
+        }),
+        inputComponent: TextareaAutosize,
+        maxRows: 4,
+        errors: [],
+      },
+    ])
+
+    handleCloseChildModal()
   }
 
   const handleCapture = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,6 +116,17 @@ const EditModalForm: React.FC<Props> = ({ open, handleClose }) => {
       setImg(target?.result as string || null)
     }
   }
+
+  const handleOpenChildModal = () => {
+    setOpenChildModal(true)
+  }
+  const handleCloseChildModal = () => {
+    setOpenChildModal(false)
+  }
+
+  // const removeField = () => {
+  //
+  // }
 
   // расставляю ошибки, если они есть
   useEffect(() => {
@@ -132,7 +170,7 @@ const EditModalForm: React.FC<Props> = ({ open, handleClose }) => {
         formRef.current.style.opacity = '1'
       }
     })
-  }, [open, formRef.current, img, description])
+  }, [open, openChildModal, formRef.current, img, description, additionalDescription])
 
   useEffect(() => {
     setIsLoading(loading)
@@ -140,33 +178,51 @@ const EditModalForm: React.FC<Props> = ({ open, handleClose }) => {
   }, [loading])
 
   return (
-    <form ref={formRef} className="modal-form edit-products-form" onSubmit={handleSubmit}>
-      <FormFields fields={fields} />
-      <input
-        accept="image/*"
-        id="icon-button-photo"
-        onChange={handleCapture}
-        type="file"
-        style={{
-          display: 'none',
-        }}
-      />
-      <div>
-        <label className="edit-products-img-label" htmlFor="icon-button-photo">
-          <Button color="primary" component="span">
-            <FontAwesomeIcon icon={faCamera as any} size="2x"/>
-            <span className="edit-products-img-label__text">Выберите изображение</span>
+    <>
+      <form name="edit-products-form" ref={formRef} className="modal-form edit-products-form" onSubmit={handleSubmit}>
+        <FormFields fields={fields}/>
+
+        <div>
+          <Button onClick={handleOpenChildModal} variant="contained">
+            Добавить поле
           </Button>
-        </label>
-        <p className="edit-products-form-errors">{imgFileErrors.map((error) => error)}</p>
-      </div>
-      {img && <img className="edit-products-img-preview" src={img} alt="img"/>}
-      <Button variant="contained" color="primary" type="submit" disabled={isLoading}>
-        {isLoading ? <Loader className="auth-spinner" type="spinner" size={20} /> : 'Сохранить'}
-      </Button>
-      <p className="form-submit-errors">{createProductErrors.map((error) => error)}</p>
-    </form>
+          <Button variant="contained">
+            Удалить поле
+          </Button>
+        </div>
+
+        <input
+          accept="image/*"
+          id="icon-button-photo"
+          onChange={handleCapture}
+          type="file"
+          style={{
+            display: 'none',
+          }}
+        />
+        <div>
+          <label className="edit-products-img-label" htmlFor="icon-button-photo">
+            <Button color="primary" component="span">
+              <FontAwesomeIcon icon={faCamera as any} size="2x"/>
+              <span className="edit-products-img-label__text">Выберите изображение</span>
+            </Button>
+          </label>
+          <p className="edit-products-form-errors">{imgFileErrors.map((error) => error)}</p>
+        </div>
+        {img && <img className="edit-products-img-preview" src={img} alt="img"/>}
+        <Button variant="contained" color="primary" type="submit" disabled={isLoading}>
+          {isLoading ? <Loader className="auth-spinner" type="spinner" size={20}/> : 'Сохранить'}
+        </Button>
+        <p className="form-submit-errors">{createProductErrors.map((error) => error)}</p>
+      </form>
+
+      <ChildModalForm
+        openChildModal={openChildModal}
+        handleCloseChildModal={handleCloseChildModal}
+        handleSubmit={handleSubmitChildForm}
+      />
+    </>
   )
 }
 
-export default EditModalForm
+export default EditProductsForm

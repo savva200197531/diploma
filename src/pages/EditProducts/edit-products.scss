@@ -19,7 +19,17 @@
   justify-content: space-between;
   flex-direction: column;
   min-height: 300px;
-  align-items: center;
+  //align-items: center;
+}
+
+.product-card-info {
+  > *:not(:first-child) {
+    margin-top: 10px;
+  }
+}
+
+.product-card-actions {
+  margin-top: 10px;
 }
 
 .product-card-edit {
@@ -42,6 +52,10 @@
   max-width: 600px;
   max-height: 700px;
   overflow: auto;
+}
+
+.child-modal-form {
+  max-width: 400px;
 }
 
 .edit-products-img-label {}

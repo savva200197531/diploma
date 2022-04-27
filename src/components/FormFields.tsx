@@ -25,7 +25,7 @@ const FormFields: React.FC<Props> = ({ fields }) => {
             id={id}
             error
           >
-            {errors?.map((error: string, index: number) =>
+            {errors?.map((error: string, index) =>
               <React.Fragment key={index}>{index !== 0 && ' '}{error}</React.Fragment>,
             )}
           </FormHelperText>

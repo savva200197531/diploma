@@ -127,7 +127,7 @@ const CartSubmit: React.FC = ({}) => {
               }}
             />
             <FormHelperText id="phone" error>
-              {phoneErrors?.map((error: string, index: number) =>
+              {phoneErrors?.map((error: string, index) =>
                 <React.Fragment key={index}>{index !== 0 && ' '}{error}</React.Fragment>,
               )}
             </FormHelperText>

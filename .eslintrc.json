@@ -25,21 +25,21 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "require-jsdoc": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/ban-types": "off",
-    "@typescript-eslint/no-unused-vars": "warn",
-    "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "require-jsdoc": "off",
-    "no-unused-vars": "warn",
     "semi": [1, "never"],
     "max-len": "off",
+    "no-unused-vars": "off",
     "object-curly-spacing": ["warn", "always"],
     "no-empty-function": "off",
     "react-hooks/exhaustive-deps": "off",
     "arrow-parens": "off",
     "spaced-comment": "off",
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "no-trailing-spaces": "warn"
   }
 }
