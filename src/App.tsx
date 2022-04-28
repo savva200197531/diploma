@@ -21,48 +21,51 @@ import Auth from './pages/Auth/Auth'
 import Login from './pages/Auth/sections/Login'
 import Signup from './pages/Auth/sections/Signup'
 import Product from './pages/Product/Product'
+import { YMaps } from 'react-yandex-maps'
 
 // корень приложения с роутером для навигации по сайту и провайдерами, для управления логикой сайта
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <ProductsProvider>
-          <CartProvider>
-            <Header/>
-            <Routes>
-              <Route path="auth" element={<Auth/>}>
-                <Route path="login" element={<Login/>}/>
-                <Route path="signup" element={<Signup/>}/>
-              </Route>
+      <YMaps>
+        <AuthProvider>
+          <ProductsProvider>
+            <CartProvider>
+              <Header/>
+              <Routes>
+                <Route path="auth" element={<Auth/>}>
+                  <Route path="login" element={<Login/>}/>
+                  <Route path="signup" element={<Signup/>}/>
+                </Route>
 
-              <Route path="/" element={<MainPage/>}>
-                <Route
-                  path="/"
-                  element={
-                    <>
-                      <Products/>
-                      <Info/>
-                      <Reviews/>
-                    </>
-                  }
-                />
-                <Route path="/product/:id" element={<Product />}/>
-                <Route path="/certificates" element={<Certificates/>}/>
-                <Route path="/contacts" element={<Contacts/>}/>
-                <Route path="/about" element={<About/>}/>
-                <Route path="/trust" element={<Trust/>}/>
-                <Route path="/support" element={<Support/>}/>
-                <Route path="/test" element={<Test/>}/>
-                <Route path="/admin/products" element={<EditProducts/>}/>
-                <Route path="/cart" element={<Cart/>}/>
-              </Route>
+                <Route path="/" element={<MainPage/>}>
+                  <Route
+                    path="/"
+                    element={
+                      <>
+                        <Products/>
+                        <Info/>
+                        <Reviews/>
+                      </>
+                    }
+                  />
+                  <Route path="/product/:id" element={<Product/>}/>
+                  <Route path="/certificates" element={<Certificates/>}/>
+                  <Route path="/contacts" element={<Contacts/>}/>
+                  <Route path="/about" element={<About/>}/>
+                  <Route path="/trust" element={<Trust/>}/>
+                  <Route path="/support" element={<Support/>}/>
+                  <Route path="/test" element={<Test/>}/>
+                  <Route path="/admin/products" element={<EditProducts/>}/>
+                  <Route path="/cart" element={<Cart/>}/>
+                </Route>
 
-              <Route path="*" element={<NotFound/>}/>
-            </Routes>
-          </CartProvider>
-        </ProductsProvider>
-      </AuthProvider>
+                <Route path="*" element={<NotFound/>}/>
+              </Routes>
+            </CartProvider>
+          </ProductsProvider>
+        </AuthProvider>
+      </YMaps>
     </BrowserRouter>
   )
 }

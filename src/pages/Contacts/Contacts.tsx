@@ -1,5 +1,6 @@
 import React from 'react'
 import './contacts.scss'
+import { Map, Placemark } from 'react-yandex-maps'
 
 const data = [
   'ООО “Русьтелетех”',
@@ -10,6 +11,11 @@ const data = [
   'E-mail: info@rusteletech.ru',
 ]
 
+const mapData = {
+  center: [53.3291, 83.80422],
+  zoom: 15,
+}
+
 const Contacts: React.FC = ({}) => {
   return (
     <section className="contacts-section">
@@ -17,6 +23,11 @@ const Contacts: React.FC = ({}) => {
         <div className="contacts-content">
           <h1>КОНТАКТНАЯ ИНФОРМАЦИЯ</h1>
           {data.map((item, index) => <p key={index}>{item}</p>)}
+          <div className="contacts-map">
+            <Map width="100%" height={400} defaultState={mapData}>
+              <Placemark geometry={[53.3291, 83.80422]} />
+            </Map>
+          </div>
         </div>
       </div>
     </section>
