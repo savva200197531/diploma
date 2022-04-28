@@ -1,7 +1,7 @@
 import React, { FormEvent, useEffect, useRef, useState } from 'react'
-import { Button, TextareaAutosize } from '@mui/material'
+import { Button, IconButton, TextareaAutosize } from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
+import { faCamera, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import Loader from 'react-ts-loaders'
 import { FormField } from '../../../types/form'
 import { ProductFields } from '../../../types/products'
@@ -9,7 +9,7 @@ import useCreateProduct from '../../../hooks/useCreateProduct'
 import useValidateStringMinMax from '../../../hooks/useValidateStringMinMax'
 import useValidateNumberMinMax from '../../../hooks/useValidateNumberMinMax'
 import useValidateRequired from '../../../hooks/useValidateRequired'
-import FormFields from '../../../components/FormFields'
+import FormFieldLayout from '../../../components/FormFieldLayout'
 import { NumberFormatCustom } from '../../../components/NumberFormatCustom'
 import ChildModalForm from './ChildModalForm'
 import { v4 } from 'uuid'
@@ -20,9 +20,9 @@ type Props = {
 }
 
 const EditProductsForm: React.FC<Props> = ({ open, handleClose }) => {
-  const [name, setName] = useState<string>('Name Name')
-  const [description, setDescription] = useState<string>('Description Description')
-  const [cost, setCost] = useState<string>('1000')
+  const [name, setName] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
+  const [cost, setCost] = useState<string>('')
   const [additionalDescription, setAdditionalDescription] = useState<{ [key: string]: string }>({})
   const [imgFile, setImgFile] = useState<File>({} as File)
   const [imgFileErrors, setImgFileErrors] = useState<string[]>([])
@@ -59,6 +59,7 @@ const EditProductsForm: React.FC<Props> = ({ open, handleClose }) => {
       errors: [],
     },
   ])
+  const [additionalFields, setAdditionalFields] = useState<FormField[]>([])
 
   const formRef = useRef<HTMLFormElement>(null)
 
@@ -70,8 +71,6 @@ const EditProductsForm: React.FC<Props> = ({ open, handleClose }) => {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
-
-    console.log(additionalDescription)
 
     setValues({
       name,
@@ -86,22 +85,27 @@ const EditProductsForm: React.FC<Props> = ({ open, handleClose }) => {
   const handleSubmitChildForm = (name: string) => {
     const id = v4()
 
-    setFields([
-      ...fields,
+    setAdditionalFields([
+      ...additionalFields,
       {
         id,
         name,
-        setState: (value) => setAdditionalDescription({
+        setState: (value: string) => setAdditionalDescription({
           ...additionalDescription,
           [name]: value,
         }),
         inputComponent: TextareaAutosize,
+        fullWidth: true,
         maxRows: 4,
         errors: [],
       },
     ])
 
     handleCloseChildModal()
+  }
+
+  const removeField = (id: string) => {
+    setAdditionalFields(additionalFields.filter(field => field.id !== id))
   }
 
   const handleCapture = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
@@ -123,10 +127,6 @@ const EditProductsForm: React.FC<Props> = ({ open, handleClose }) => {
   const handleCloseChildModal = () => {
     setOpenChildModal(false)
   }
-
-  // const removeField = () => {
-  //
-  // }
 
   // расставляю ошибки, если они есть
   useEffect(() => {
@@ -180,16 +180,19 @@ const EditProductsForm: React.FC<Props> = ({ open, handleClose }) => {
   return (
     <>
       <form name="edit-products-form" ref={formRef} className="modal-form edit-products-form" onSubmit={handleSubmit}>
-        <FormFields fields={fields}/>
+        {fields.map(field => <FormFieldLayout key={field.id} field={field}/>)}
+        {additionalFields.map(field => (
+          <div className="edit-products-additional-field" key={field.id}>
+            <FormFieldLayout field={field}/>
+            <IconButton color="error" onClick={() => removeField(field.id)}>
+              <FontAwesomeIcon icon={faTrashCan as any} size="sm" />
+            </IconButton>
+          </div>
+        ))}
 
-        <div>
-          <Button onClick={handleOpenChildModal} variant="contained">
-            Добавить поле
-          </Button>
-          <Button variant="contained">
-            Удалить поле
-          </Button>
-        </div>
+        <Button onClick={handleOpenChildModal} variant="contained">
+          Добавить поле
+        </Button>
 
         <input
           accept="image/*"

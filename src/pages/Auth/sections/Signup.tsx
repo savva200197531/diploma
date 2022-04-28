@@ -7,7 +7,7 @@ import useValidateEmail from '../../../hooks/useValidateEmail'
 import useValidatePassword from '../../../hooks/useValidatePassword'
 import Loader from 'react-ts-loaders'
 import useValidatePasswordConfirm from '../../../hooks/useValidatePasswordConfirm'
-import FormFields from '../../../components/FormFields'
+import FormFieldLayout from '../../../components/FormFieldLayout'
 
 const Signup: React.FC = () => {
   // состояние компонента
@@ -101,7 +101,7 @@ const Signup: React.FC = () => {
   // верстка
   return <>
     <form className="auth-form signup-form" onSubmit={handleSubmit}>
-      <FormFields fields={fields} />
+      {fields.map(field => <FormFieldLayout key={field.id} field={field} />)}
 
       <Button variant="contained" color="primary" type="submit" disabled={isLoading}>
         {isLoading ? <Loader className="auth-spinner" type="spinner" size={20} /> : 'Зарегистрироваться'}

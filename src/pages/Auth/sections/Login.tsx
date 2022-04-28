@@ -6,12 +6,12 @@ import useValidatePassword from '../../../hooks/useValidatePassword'
 import Loader from 'react-ts-loaders'
 import useLogin from '../../../hooks/useLogin'
 import { FormField } from '../../../types/form'
-import FormFields from '../../../components/FormFields'
+import FormFieldLayout from '../../../components/FormFieldLayout'
 
 const Login: React.FC = () => {
   // состояние компонента
-  const [login, setLogin] = useState<string>('nama14607@gmail.com')
-  const [password, setPassword] = useState<string>('123123')
+  const [login, setLogin] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
   const [isLoading, setIsLoading] = useState(false)
   const [fields, setFields] = useState<FormField[]>([
     {
@@ -85,7 +85,7 @@ const Login: React.FC = () => {
   // верстка
   return <>
     <form className="auth-form login-form" onSubmit={handleSubmit}>
-      <FormFields fields={fields} />
+      {fields.map(field => <FormFieldLayout key={field.id} field={field} />)}
 
       <Button variant="contained" color="primary" type="submit" disabled={isLoading}>
         {isLoading ? <Loader className="auth-spinner" type="spinner" size={20} /> : 'Войти'}

@@ -2,7 +2,7 @@ import React, { FormEvent, useEffect, useRef, useState } from 'react'
 import { Button, Modal } from '@mui/material'
 import { FormField } from '../../../types/form'
 import useValidateRequired from '../../../hooks/useValidateRequired'
-import FormFields from '../../../components/FormFields'
+import FormFieldLayout from '../../../components/FormFieldLayout'
 
 type Props = {
   openChildModal: boolean
@@ -73,7 +73,7 @@ const ChildModalForm: React.FC<Props> = ({ openChildModal, handleCloseChildModal
         className="modal-form child-modal-form"
         onSubmit={handleSubmitChildForm}
       >
-        <FormFields fields={fields}/>
+        {fields.map(field => <FormFieldLayout key={field.id} field={field} />)}
 
         <Button type="submit" variant="contained">
           Сохранить

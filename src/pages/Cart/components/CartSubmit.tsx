@@ -5,12 +5,12 @@ import {
 } from '@mui/material'
 import { FormField } from '../../../types/form'
 import { PhoneMaskCustom } from '../../../components/PhoneMaskCustom'
-import FormFields from '../../../components/FormFields'
 import useValidateStringMinMax from '../../../hooks/useValidateStringMinMax'
 import useValidateRequired from '../../../hooks/useValidateRequired'
 import { CartFields } from '../../../types/cart'
 import useCartSubmit from '../../../hooks/useCartSubmit'
 import Loader from 'react-ts-loaders'
+import FormFieldLayout from '../../../components/FormFieldLayout'
 
 const CartSubmit: React.FC = ({}) => {
   const [open, setOpen] = useState<boolean>(false)
@@ -112,7 +112,7 @@ const CartSubmit: React.FC = ({}) => {
         onClose={handleClose}
       >
         <form ref={formRef} className="cart-submit-form modal-form" onSubmit={handleSubmit}>
-          <FormFields fields={fields} />
+          {fields.map(field => <FormFieldLayout key={field.id} field={field} />)}
 
           <FormControl>
             <InputLabel color="primary" htmlFor="phone">Телефон</InputLabel>
