@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
       <div className="container">
         <div className="footer-content">
           <div className="footer-info-wrapper">
-            <p className="copyright">ООО “РУСЬТЕЛЕТЕХ”, 2009-2021</p>
+            <p className="copyright">ООО “РУСЬТЕЛЕТЕХ”, 2002-2021</p>
             <div className="footer-info">
               <FontAwesomeIcon icon={faHouse as any} size="lg" />
               <div>
